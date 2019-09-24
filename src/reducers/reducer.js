@@ -34,18 +34,6 @@ export const reducer = (state, action) => {
     }
 }
 
-/*   {
-        const idx = state.todos.findIndex(t => t.id === action.id);
-        const todo = Object.assign({}, state.todos[idx]);
-        todo.text = action.text;
-        const todos = Object.assign([], state.todos);
-        todos.splice(idx, 1, todo);
-        return {
-          counter: state.counter,
-          todos: todos,
-        };
-      }*/
-
 
 export const initialState = [
     {
