@@ -10,7 +10,8 @@ export const reducer = (state, action) => {
                 ...state,
                 {
                     item: action.payload,
-                    completed: false
+                    completed: false,
+                    id: new Date()
                 }
             ]
         default:
