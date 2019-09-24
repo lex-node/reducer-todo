@@ -16,8 +16,12 @@ const ToDoList = () => {
         dispatch({type: 'addToDo', payload: newToDo})
     }
 
-    const clickHandler = (toDo) => {
+    const completionClickHandler = (toDo) => {
         dispatch({type: 'toggleCompletionStatus', payload: toDo});
+    }
+
+    const clearanceClickHandler = () => {
+        dispatch({type: 'clearCompleted'});
     }
 
     return (
@@ -27,7 +31,7 @@ const ToDoList = () => {
                     return (
                         <div>
                             <h1 key={toDo.id}>{toDo.item}</h1>
-                            <button onClick={() => clickHandler(toDo)}> Mark Completed</button>
+                            <button onClick={() => completionClickHandler(toDo)}> Mark Completed</button>
                         </div>
                     )
                 } else {
@@ -46,6 +50,7 @@ const ToDoList = () => {
                 </label>
                 <input type="submit" value="Submit"/>
             </form>
+            <button onClick={() => clearanceClickHandler()}>Clear All Completed Tasks</button>
         </div>
     )
 }
