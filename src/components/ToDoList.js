@@ -1,16 +1,35 @@
-import React, {useReducer} from 'react';
+import React, {useState, useReducer} from 'react';
 import {reducer, initialState} from "../reducers/reducer";
 
 const ToDoList = () => {
+    // add a state hook to hold the state of the input field for new todos
+    const [newToDo, setNewToDo] = useState();
     // Use the useReducer hook by destructuring its two properties: state, and dispatch and pass in the reducer and the initialState to the useReducer function
     const [state, dispatch] = useReducer(reducer, initialState)
 
+    const handleChange = (e) => {
+        setNewToDo(e.target.value);
+    }
+
+    const submitHandler = (e) => {
+        e.preventDefault();
+        dispatch({type: 'addToDo', payload: newToDo})
+    }
 
     return (
         <div>
-            <h1>{state.item}</h1>
-            {/*     <button onClick={() => dispatch({ type: 'INCREASE' })}>+1</button>
-      <button onClick={() => dispatch({ type: 'DECREASE' })}>-1</button>*/}
+            {state.map(toDo => {
+                return (
+                    <h1 key={toDo.id}>{toDo.item}</h1>
+                )
+            })}
+            <form onSubmit={submitHandler}>
+                <label>
+                    Add new to-do item:
+                    <input name="newToDo" type="text" value={newToDo} onChange={handleChange}/>
+                </label>
+                <input type="submit" value="Submit"/>
+            </form>
         </div>
     )
 }
@@ -18,9 +37,38 @@ const ToDoList = () => {
 export default ToDoList;
 
 
-/*### STEP 2 - Set up state in your component
+/*const todos = (state = [], action) => {
+  switch (action.type) {
+    case 'ADD_TODO':
+      return [
+        ...state,
+        {
+          id: action.id,
+          text: action.text,
+          completed: false
+        }
+      ]
+    case 'TOGGLE_TODO':
+      return state.map(todo =>
+        (todo.id === action.id)
+          ? {...todo, completed: !todo.completed}
+          : todo
+      )
+    default:
+      return state
+  }
+}
 
-You get to choose how you want to set up your components. Please don't just do this all inside App. I know it is a small and simple project, but you will do yourself a great service by setting your app up as if it were going to be a larger application
+export default todos*/
 
-- Using the `reducer` hook, set up state in your component. Think about what you'll need in order to use the reducer hook, and think about what it returns.
-- Now render your list of todos from your reducer in your app*/
+/*
+
+### STEP 3 - Adding todos
+
+- Build a form to add todos to your list
+- Build a function that will dispatch an action to add a new todo
+- Write the `case` in your reducer for adding a todo (You can create a unique id with `new Date()`)
+
+*/
+
+
