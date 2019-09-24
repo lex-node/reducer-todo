@@ -37,38 +37,4 @@ const ToDoList = () => {
 export default ToDoList;
 
 
-/*const todos = (state = [], action) => {
-  switch (action.type) {
-    case 'ADD_TODO':
-      return [
-        ...state,
-        {
-          id: action.id,
-          text: action.text,
-          completed: false
-        }
-      ]
-    case 'TOGGLE_TODO':
-      return state.map(todo =>
-        (todo.id === action.id)
-          ? {...todo, completed: !todo.completed}
-          : todo
-      )
-    default:
-      return state
-  }
-}
-
-export default todos*/
-
-/*
-
-### STEP 3 - Adding todos
-
-- Build a form to add todos to your list
-- Build a function that will dispatch an action to add a new todo
-- Write the `case` in your reducer for adding a todo (You can create a unique id with `new Date()`)
-
-*/
-
 
