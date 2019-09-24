@@ -2,9 +2,10 @@
 import React from 'react';
 
 export const reducer = (state, action) => {
-    /*console.log(state);
+    console.log(state);
+    console.log(action);
     console.log(action.payload);
-    console.log(action.type);*/
+    console.log(action.type);
     switch (action.type) {
         case 'addToDo':
             return [
@@ -16,7 +17,7 @@ export const reducer = (state, action) => {
                 }
             ];
         case 'toggleCompletionStatus':
-            const targetToDoID = state.todos.findIndex(toDo => action.id === toDo.id)
+            const targetToDoID = state.findIndex(toDo => action.payload.id === toDo.id)
             const targetToDo = Object.assign({}, state[targetToDoID]);
             targetToDo.completed = true;
             const todos = Object.assign([], state);

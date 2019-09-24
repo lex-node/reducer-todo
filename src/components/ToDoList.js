@@ -16,12 +16,28 @@ const ToDoList = () => {
         dispatch({type: 'addToDo', payload: newToDo})
     }
 
+    const clickHandler = (toDo) => {
+        dispatch({type: 'toggleCompletionStatus', payload: toDo});
+    }
+
     return (
         <div>
             {state.map(toDo => {
-                return (
-                    <h1 key={toDo.id}>{toDo.item}</h1>
-                )
+                if (toDo.completed === false) {
+                    return (
+                        <div>
+                            <h1 key={toDo.id}>{toDo.item}</h1>
+                            <button onClick={() => clickHandler(toDo)}> Mark Completed</button>
+                        </div>
+                    )
+                } else {
+                    return (
+                        <div>
+                            <h1 key={toDo.id} className="strikethrough">{toDo.item}</h1>
+                        </div>
+                    )
+
+                }
             })}
             <form onSubmit={submitHandler}>
                 <label>
