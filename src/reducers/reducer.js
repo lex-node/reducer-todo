@@ -17,11 +17,13 @@ export const reducer = (state, action) => {
                 }
             ];
         case 'toggleCompletionStatus':
-            const targetToDoID = state.findIndex(toDo => action.payload.id === toDo.id)
-            const targetToDo = Object.assign({}, state[targetToDoID]);
-            targetToDo.completed = true;
-            const todos = Object.assign([], state);
-            todos.splice(targetToDoID, 1, targetToDo);
+            const todos = state.map(toDo => {
+                if(toDo.id === action.payload.id) {
+                    return {...toDo, completed: true}
+                } else {
+                    return toDo;
+                }
+            })
             return todos;
         case 'clearCompleted':
             const incompleteToDos = state.filter((toDo) => {
