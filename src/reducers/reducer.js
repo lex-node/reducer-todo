@@ -7,7 +7,7 @@ export const reducer = (state, action) => {
     console.log(action.payload);
     console.log(action.type);
     switch (action.type) {
-        case 'addToDo':
+        case 'ADD_TODO':
             return [
                 ...state,
                 {
@@ -16,7 +16,7 @@ export const reducer = (state, action) => {
                     id: new Date()
                 }
             ];
-        case 'toggleCompletionStatus':
+        case 'TOGGLE_COMPLETION_STATUS':
             const todos = state.map(toDo => {
                 if(toDo.id === action.payload.id) {
                     return {...toDo, completed: true}
@@ -25,7 +25,7 @@ export const reducer = (state, action) => {
                 }
             })
             return todos;
-        case 'clearCompleted':
+        case 'CLEAR_COMPLETED':
             const incompleteToDos = state.filter((toDo) => {
                 return toDo.completed === false;
             });

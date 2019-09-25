@@ -13,16 +13,16 @@ const ToDoList = () => {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        dispatch({type: 'addToDo', payload: newToDo})
+        dispatch({type: 'ADD_TODO', payload: newToDo})
         setNewToDo("");
     }
 
     const completionClickHandler = (toDo) => {
-        dispatch({type: 'toggleCompletionStatus', payload: toDo});
+        dispatch({type: 'TOGGLE_COMPLETION_STATUS', payload: toDo});
     }
 
     const clearanceClickHandler = () => {
-        dispatch({type: 'clearCompleted'});
+        dispatch({type: 'CLEAR_COMPLETED'});
     }
 
     return (
