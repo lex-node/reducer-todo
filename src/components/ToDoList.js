@@ -14,6 +14,7 @@ const ToDoList = () => {
     const submitHandler = (e) => {
         e.preventDefault();
         dispatch({type: 'addToDo', payload: newToDo})
+        setNewToDo("");
     }
 
     const completionClickHandler = (toDo) => {
